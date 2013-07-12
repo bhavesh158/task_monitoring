@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TaskMonitoring</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <div class="navbar navbar-fluid-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          
+          <a class="brand" href="#">TaskMonitoring</a>
+           <div class="nav-collapse collapse navbar-responsive-collapse">
+             <ul class="nav">
+             </ul>
+             <ul class="nav pull-right">
+              <% if current_user.present? %>
+                <li><%= link_to "Logout", destroy_user_session_path, method: 'DELETE' %></li>
+              <%else%>
+                <li><%= link_to "SignIn", new_user_session_path %></li>
+              <%end%>
+             </ul>
+           </div><!-- /.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <% if current_user.present? %>
+          <div class="span3">
+            <div class="well sidebar-nav">
+              <ul class="nav nav-list">
+                <li class="nav-header"><%= current_user.email %></li>
+                <li><%= link_to 'Home', home_index_path %></li>
+                <li><%= link_to 'Edit My Profile', edit_user_registration_path %></li>
+                <li><%= link_to "New Task", "#"  %></li>
+                <li><%= link_to "All Task", "#"  %></li>
+                <li><%= link_to "My Team", team_index_path  %></li>
+              </ul>
+            </div><!--/.well -->
+          <% end %>
+        </div><!--/span-->
+        <div class="span9">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+      </div><!--/row-->
+    </div> <!-- /container -->
+
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+
+  </body>
+</html>

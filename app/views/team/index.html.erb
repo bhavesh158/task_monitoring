@@ -1,0 +1,17 @@
+Listing Teams
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Team Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+  
+  <% @my_teams.each do |team| %>
+    <tr>
+      <td><%= team.id  %></td>
+      <td><%= team.team_name %></td>
+    </tr>
+  <% end %>
+</table>
