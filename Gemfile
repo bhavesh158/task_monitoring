@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'devise'
+gem 'devise_invitable'
 gem 'activeadmin'
 
 group :assets do

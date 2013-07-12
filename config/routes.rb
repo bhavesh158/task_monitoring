@@ -1,16 +1,20 @@
 TaskMonitoring::Application.routes.draw do
 
-  root :to => 'welcome#index'
-  
   devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
 
   devise_for :users
-  ActiveAdmin.routes(self)
   
+  root :to => 'welcome#index'
+
+  ActiveAdmin.routes(self)
+
   resources :home
-  resources :team
-  resources :team_member
+  resources :teams
+  resources :team_members
+  
+  resources :teams do
+    resources :users
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

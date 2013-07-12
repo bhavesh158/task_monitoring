@@ -1,0 +1,17 @@
+<h2>Password Settings</h2>
+ 
+<%= form_for @user, :url => new_invitation_admin_users_path do |f| %>
+   
+   <table style='width: 50%'>
+    <tr>
+   		<td><%= f.label :password %></td>
+   		<td><%= f.password_field :password %></td>
+   	</tr>
+   	<tr>
+   		<td><%= f.label :password_confirmation %></td>
+   		<td><%= f.password_field :password_confirmation %></td>
+   	</tr>
+   </table>
+   
+  <%= f.submit  "Change Password" %>
+<% end %>

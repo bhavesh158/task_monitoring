@@ -1,3 +1,2 @@
-ActiveAdmin.register TeamMember do
-  
+ActiveAdmin.register TeamMember do 
 end
