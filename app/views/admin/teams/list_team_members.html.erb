@@ -1,0 +1,33 @@
+<h1>Listing Team Members</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First</th>
+      <th>Last Name</th>
+      <th>E-mail</th>
+      <th>Mobile No.</th>
+      <th>Address</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @team_members.each do |team_member| %>
+      <% user = User.get_user(team_member.user_id).first %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.mobile_no %></td>
+        <td><%= user.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

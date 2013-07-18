@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   end
   validates :mobile_no,numericality: { only_integers: true }, length: { is: 10}
   
+  scope :get_user, lambda { |user_id| where(:id => user_id) }
+  
   def display_name
     return self.first_name + " " + self.last_name
   end
