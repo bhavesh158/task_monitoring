@@ -11,6 +11,7 @@ gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'devise_invitable'
 gem 'activeadmin'
+gem "paperclip", "~> 3.0"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

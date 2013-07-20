@@ -1,0 +1,45 @@
+<%= form_for(@task) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :team_id %><br />
+    <%= f.text_field :team_id, value: @team.team_name, readonly: :true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.select(:user_id, @team_members_names) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :details %><br />
+    <%= f.text_field :details %>
+  </div>
+  
+  <% if @task.new_record? %>
+  <% elsif %>  
+    <div class="field">
+      <%= f.label :status %>
+      <%= f.select :status, ["Pending", "In-Process", "Complete", "Close" ] %>
+    </div>
+  <% end %>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,8 +1,11 @@
 <h2><%= t 'devise.invitations.edit.header' %></h2>
 
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put, :multipart => true } do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :invitation_token %>
+  
+  <div><%= f.label :Upload_Image %>
+  <%= f.file_field :avatar %></div><br />
   
   <div><%= f.label :first_name %><br />
   <%= f.text_field :first_name, :autofocus => true %></div>

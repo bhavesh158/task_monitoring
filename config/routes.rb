@@ -1,5 +1,8 @@
 TaskMonitoring::Application.routes.draw do
 
+  resources :tasks
+
+
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   devise_for :users

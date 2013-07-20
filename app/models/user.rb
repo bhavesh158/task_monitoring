@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
   has_and_belongs_to_many :teams, join_table: 'team_members'
+  has_many :tasks
   
   validates :first_name, :last_name, :address, :mobile_no, presence: true
   validates :first_name, length: { minimum: 2}
@@ -28,7 +29,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
-  
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :address, :mobile_no
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/home/rails/test123/task_monitoring/missing.png"
+  attr_accessible :avatar, :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :address, :mobile_no
   
 end

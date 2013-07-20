@@ -12,6 +12,10 @@ Listing Teams
     <tr>
       <td><%= team.id  %></td>
       <td><%= team.team_name %></td>
+      <% user_type = team.get_user_type(current_user.id) %>
+      <% if user_type == "Team Lead" %>
+        <td><%= link_to "New Task", new_task_path(:team_id => team.id) %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>

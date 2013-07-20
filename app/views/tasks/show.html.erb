@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Team:</b>
+  <%= @team_details.team_name %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @user_details.first_name + " " + @user_details.last_name  %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @task_details.title %>
+</p>
+
+<p>
+  <b>Details:</b>
+  <%= @task_details.details %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @task_details.status %>
+</p>
+
+<%= link_to 'Back', tasks_path %>

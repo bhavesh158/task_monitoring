@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711100837) do
+ActiveRecord::Schema.define(:version => 20130720123851) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(:version => 20130711100837) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "tasks", :force => true do |t|
+    t.string   "title"
+    t.string   "details"
+    t.string   "status"
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "team_members", :force => true do |t|
     t.integer  "user_id"
     t.integer  "team_id"
@@ -61,25 +71,37 @@ ActiveRecord::Schema.define(:version => 20130711100837) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                                :default => "", :null => false
+    t.string   "encrypted_password",                   :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                        :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "address"
     t.string   "mobile_no"
+    t.string   "invitation_token",       :limit => 60
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token", :unique => true
+  add_index "users", ["invited_by_id"], :name => "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
