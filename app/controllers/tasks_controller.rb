@@ -24,9 +24,10 @@ class TasksController < InheritedResources::Base
   
   def create
     team = Team.where(team_name: params[:task][:team_id]).first
-    user = User.where(id: params[:task][:user_id].split(" ").first).first
-    task = Task.new(team_id: team.id, user_id: user.id, title: params[:task][:title], details: params[:task][:details])
-    if task.save
+    @user = User.where(id: params[:task][:user_id].split(" ").first).first
+    @task = Task.new(team_id: team.id, user_id: @user.id, title: params[:task][:title], details: params[:task][:details])
+    if @task.save
+      TaskMailer.new_task_notification(@task, @user).deliver
       redirect_to tasks_path, notice: "Task has been created"
     else
       redirect_to new_task_path(team_id: team.id), alert: "Could not leave Task Title and/or Task Detials empty "
@@ -54,8 +55,8 @@ class TasksController < InheritedResources::Base
   def update
     task = Task.find(params[:id])
     team = Team.where(team_name: params[:task][:team_id]).first
-    user = User.where(id: params[:task][:user_id].split(" ").first).first
-    if task.update_attributes(team_id: team.id, user_id: user.id, title: params[:task][:title], details: params[:task][:details], status: params[:task][:status])
+    @user = User.where(id: params[:task][:user_id].split(" ").first).first
+    if task.update_attributes(team_id: team.id, user_id: @user.id, title: params[:task][:title], details: params[:task][:details], status: params[:task][:status])
       redirect_to tasks_path, notice: "Task has been successfully updated"
     else
       redirect_to new_task_path(team_id: team.id), alert: "Could not leave Task Title and/or Task Detials empty"

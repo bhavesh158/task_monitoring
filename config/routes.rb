@@ -2,7 +2,6 @@ TaskMonitoring::Application.routes.draw do
 
   resources :tasks
 
-
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   devise_for :users
@@ -12,7 +11,10 @@ TaskMonitoring::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :home
-  resources :teams
+  resources :teams do
+    get 'team_tasks'
+  end
+  
   resources :team_members
   
   resources :teams do

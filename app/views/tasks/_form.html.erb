@@ -12,29 +12,29 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :team_id %><br />
+    <%= f.label :team_id, class:"label" %><br />
     <%= f.text_field :team_id, value: @team.team_name, readonly: :true %>
   </div>
   
   <div class="field">
-    <%= f.label :user_id %><br />
+    <%= f.label :user_id, class:"label" %><br />
     <%= f.select(:user_id, @team_members_names) %>
   </div>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title, class:"label" %><br />
     <%= f.text_field :title %>
   </div>
   
   <div class="field">
-    <%= f.label :details %><br />
+    <%= f.label :details, class:"label" %><br />
     <%= f.text_field :details %>
   </div>
   
   <% if @task.new_record? %>
   <% elsif %>  
     <div class="field">
-      <%= f.label :status %>
+      <%= f.label :status, class:"label" %><br />
       <%= f.select :status, ["Pending", "In-Process", "Complete", "Close" ] %>
     </div>
   <% end %>

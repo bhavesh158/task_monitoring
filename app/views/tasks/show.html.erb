@@ -1,28 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Team:</b>
-  <%= @team_details.team_name %>
-</p>
+<legend>Task Details</legend>
 
-<p>
-  <b>User:</b>
-  <%= @user_details.first_name + " " + @user_details.last_name  %>
-</p>
+<table class = "table table-striped" >
 
-<p>
-  <b>Title:</b>
-  <%= @task_details.title %>
-</p>
+  <tr>
+    <td><b>Team:</b></td>
+    <td><%= @team_details.team_name %></td>
+  </tr>
 
-<p>
-  <b>Details:</b>
-  <%= @task_details.details %>
-</p>
+  <tr>
+    <td><b>User:</b></td>
+    <td><%= @user_details.first_name + " " + @user_details.last_name %></td>
+  </tr>
 
-<p>
-  <b>Status:</b>
-  <%= @task_details.status %>
-</p>
+  <tr>
+    <td><b>Title:</b></td>
+    <td><%= @task_details.title %></td>
+  </tr>
+
+  <tr>
+    <td><b>Details:</b></td>
+    <td><%= @task_details.details %></td>
+  </tr>
+  
+  <tr>
+    <td><b>Status:</b></td>
+    <td><%= @task_details.status %></td>
+  </tr>
+  
+</table>
 
 <%= link_to 'Back', tasks_path %>

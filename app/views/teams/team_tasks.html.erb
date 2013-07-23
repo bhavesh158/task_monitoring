@@ -1,4 +1,9 @@
-<legend><h4>Listing Tasks</h4></legend>
+<legend><%= @team.team_name %>
+<% user_type = current_user.get_current_user_type(current_user.id) %>
+<% if user_type == "Team Lead" %>
+  <%= link_to "Create New Task", new_task_path(team_id: params[:team_id]), class: "btn pull-right" %></legend>
+<% end %>
+
 
 <table class = "table table-striped" >
   <thead>
@@ -30,3 +35,4 @@
   </tr>
 <% end %>
 </table>
+

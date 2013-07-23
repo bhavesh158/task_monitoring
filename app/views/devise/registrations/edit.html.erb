@@ -3,7 +3,7 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f| %>
   <%= devise_error_messages! %>
   
-  <div><%= f.label :Upload_Image %>
+  <div><%= f.label :upload_image %>
   <%= f.file_field :avatar %></div><br />
 
   <div><%= f.label :first_name %><br />

@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   
   scope :get_user, lambda { |user_id| where(:id => user_id) }
   
+  def get_current_user_type(user_id)
+    TeamMember.where(user_id: user_id).first.user_type
+  end
+  
   def display_name
     return self.first_name + " " + self.last_name
   end
@@ -29,7 +33,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/home/rails/test123/task_monitoring/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "300x300", :thumb => "100x100" }, :default_url => "/home/rails/test123/task_monitoring/missing.png"
   attr_accessible :avatar, :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :address, :mobile_no
   
 end
