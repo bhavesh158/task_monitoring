@@ -9,6 +9,7 @@ class TeamsController < ApplicationController
   def team_tasks
     @team = Team.find(params[:team_id])
     @tasks = @team.tasks
+    @user = @team.team_members.map{ |team_member| team_member.user }
   end
 
 end

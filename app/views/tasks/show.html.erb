@@ -1,34 +1,63 @@
 <p id="notice"><%= notice %></p>
 
-<legend>Task Details</legend>
+<legend><b>Task Details</b></legend>
 
 <table class = "table table-striped" >
-
-  <tr>
-    <td><b>Team:</b></td>
-    <td><%= @team_details.team_name %></td>
-  </tr>
-
-  <tr>
-    <td><b>User:</b></td>
-    <td><%= @user_details.first_name + " " + @user_details.last_name %></td>
-  </tr>
-
-  <tr>
-    <td><b>Title:</b></td>
-    <td><%= @task_details.title %></td>
-  </tr>
-
-  <tr>
-    <td><b>Details:</b></td>
-    <td><%= @task_details.details %></td>
-  </tr>
+  <thead>
+    <tr>
+      <th><b>Team</b></th>
+      <th><b>User</b></th>
+      <th><b>Title</b></th>
+      <th><b>Details</b></th>
+      <th><b>Status</b></th>
+    </tr>
+  </thead>
   
   <tr>
-    <td><b>Status:</b></td>
+    <td><%= @team_details.team_name %></td>
+    <td><%= @user_details.first_name + " " + @user_details.last_name %></td>
+    <td><%= @task_details.title %></td>
+    <td><%= @task_details.details %></td>
     <td><%= @task_details.status %></td>
   </tr>
-  
+
 </table>
 
-<%= link_to 'Back', tasks_path %>
+
+<legend><b>Comments</b></legend>
+<table class = "table table-striped">
+  <thead>
+    <tr>
+      <th><b>Message</b></th>
+      <th><b>Commenter</b></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead> 
+  <% @task_details.task_comments.each do |task_comment| %>
+    <tr>
+      <td><%= task_comment.message %></td>
+      <td><%= User.find(task_comment.user_id).first_name + " " + User.find(task_comment.user_id).last_name %></td>
+      <td><%= image_tag task_comment.comment_attachment.url %><%= link_to 'Download Attachment', task_comment_download_attachment_path(task_comment.id) %></td>
+      <% if task_comment.user_id == current_user.id %>
+        <td><%= link_to 'Destroy', task_task_comment_path(task_comment.task_id, task_comment.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></td>
+      <% end %> 
+    </tr>
+  
+  <% end %>
+</table>
+ 
+<legend><b>Add Comment</b></legend>
+<%= form_for([@task_details, @task_details.task_comments.build]) do |f| %>
+  <p>
+    <%= f.label :message %><br />
+    <%= f.text_area :message, size: "3x3"  %>
+  </p>
+  <p>
+    <%= f.label :upload_attachment %>
+    <%= f.file_field :comment_attachment %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

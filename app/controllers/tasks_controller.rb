@@ -38,6 +38,7 @@ class TasksController < InheritedResources::Base
     @task_details = Task.find(params[:id])
     @team_details = Team.find(@task_details.team_id)
     @user_details = User.find(@task_details.user_id)
+    
   end
   
   def edit

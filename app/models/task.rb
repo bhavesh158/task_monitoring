@@ -1,4 +1,5 @@
 class Task < ActiveRecord::Base
+  has_many :task_comments
   belongs_to :team
   belongs_to :user
   before_create do |task|

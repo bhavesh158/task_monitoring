@@ -23,7 +23,7 @@
              </ul>
              <ul class="nav pull-right">
               <% if current_user.present? %>
-                <li><%= link_to "Home", home_index_path %></li>
+                <li><%= link_to "My Home", home_index_path %></li>
                 <li><%= link_to "Edit My Profile", edit_user_registration_path %></li>
                 <li><%= link_to "Logout", destroy_user_session_path, method: 'DELETE' %></li>
               <%else%>
@@ -41,11 +41,12 @@
           <div class="span3">
             <div class="well sidebar-nav">
               <ul class="nav nav-list">
-                <li class="nav-header"><%= current_user.email %></li>
-                <li><b><%= link_to "All Task", tasks_path  %></b></li>
-                <li><legend><b>My Teams</b></legend></li>
+                <li class="nav-header"><h5><%= current_user.email %></h5></li>
+                <li><legend><h4><b>My Tasks</b></h4></legend></li>
+                <li><b><%= link_to "All Task", tasks_path, class: "btn btn-block"  %></b></li>
+                <li><legend><h4><b>My Teams</b></h4></legend></li>
                 <% current_user.teams.each do |team| %>
-                  <li><b><%= link_to team.team_name, team_team_tasks_path(team.id) %></b></li>
+                  <li><b><%= link_to team.team_name, team_team_tasks_path(team.id), class: "btn btn-block" %></b></li>
                 <% end %>
               </ul>
             </div><!--/.well -->

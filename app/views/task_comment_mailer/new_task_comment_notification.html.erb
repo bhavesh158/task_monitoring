@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to GrepRuby.com, <%= @user.first_name + " " + @user.last_name %></h1>
+    <p>
+      <b><%= @current_user.first_name + " " + @current_user.last_name %></b> has commented on one of the task in <b><%= @task_team.team_name %></b> Team.
+    </p> 
+    <p>
+      To see the task commment, just follow this link: <%= link_to "Show Comment", task_url(@task.id) %> .
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+    <%= f.select :user_id, @team_members.map {|m| [m.user_id] } %>
+    
+    <%= f.select(:user_id, @team_members_names, ) %>
+
+    
+    
+    @team_members = @team.team_members
+    @users = @team_members.map {|m| [m.user_id]}
+    @users_names = User.find(@users)
+    @team_member_names = @users_names.map{|f| f.first_name}
+    
+    
+    <%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
+
+
+<%= link_to 'Show', @task %> |
+
+    
+    
+    team = Team.where(team_name: params[:task][:team_id])
+    user = User.where(:id => params[:task][:user_id].split(" ").first)
+    @task = Task.new(:team_id => team.first.id, :user_id => user.first.id, :title => params[:task][:title], :details => params[:task][:details])

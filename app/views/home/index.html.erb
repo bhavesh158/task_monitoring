@@ -1,6 +1,7 @@
 <% if current_user.present? %>
   <legend><h5>Welcome <%= current_user.first_name + " " + current_user.last_name %> !</h5></legend > <br />
 
-
-  <%= image_tag current_user.avatar.url(:medium), class: "img-circle" %>
+  <div class="span2">
+    <%= image_tag current_user.avatar.url(:medium), class: "img-circle" %>
+  </div>
 <% end %>

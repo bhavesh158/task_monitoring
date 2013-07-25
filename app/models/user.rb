@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   
   has_and_belongs_to_many :teams, join_table: 'team_members'
   has_many :tasks
+  has_many :task_comments
   
   validates :first_name, :last_name, :address, :mobile_no, presence: true
   validates :first_name, length: { minimum: 2}
@@ -21,8 +22,9 @@ class User < ActiveRecord::Base
   
   scope :get_user, lambda { |user_id| where(:id => user_id) }
   
-  def get_current_user_type(user_id)
-    TeamMember.where(user_id: user_id).first.user_type
+  def get_current_user_type(user_id, team)
+    @team = TeamMember.where(team_id: team.id)
+    @team.where(user_id: user_id).first.user_type
   end
   
   def display_name
