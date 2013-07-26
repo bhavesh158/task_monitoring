@@ -1,6 +1,5 @@
 <legend><b><%= @team.team_name %>'s Task
-<% user_type = current_user.get_current_user_type(current_user.id, @team) %>
-<% if user_type == "Team Lead" %>
+<% if is_team_lead?(@team) %>
   <%= link_to "Create New Task", new_task_path(team_id: params[:team_id]), class: "btn pull-right" %>
 <% end %></b></legend>
 
@@ -27,8 +26,7 @@
     <td><%= task.status %></td>
     <td><%= link_to 'Show', task, class: "btn" %></td>
     <td><%= link_to 'Edit', edit_task_path(task), class: "btn" %></td>
-    <% user_type = current_user.get_current_user_type(current_user.id, @team) %>
-    <% if user_type == "Team Lead" %>
+    <% if is_team_lead?(@team) %>
       <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></td>
     <% end %>
   </tr>
@@ -57,11 +55,10 @@
     <td><%= user.last_name %></td>
     <td><%= user.email %></td>
     <td><%= user.mobile_no %></td>
-    <% user_type = current_user.get_current_user_type(current_user.id, @team) %>
-    <% if user_type == "Team Lead" %>
+    <% if is_team_lead?(@team) %>
       <td><%= link_to 'Give FeedBack', new_team_user_feedback_path(@team, user),  class: "btn" %></td>
     <% end %>
-    <% if user_type == "Team Lead" || current_user.id == user.id %>
+    <% if is_team_lead?(@team) || current_user.id == user.id %>
       <td><%= link_to 'Show FeedBack', team_user_feedbacks_path(@team, user), class: "btn" %></td>
     <% end %>
   </tr>

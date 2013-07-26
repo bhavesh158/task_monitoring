@@ -23,9 +23,9 @@ class User < ActiveRecord::Base
   
   scope :get_user, lambda { |user_id| where(:id => user_id) }
   
-  def get_current_user_type(user_id, team)
+  def get_current_user_type(team)
     @team = TeamMember.where(team_id: team.id)
-    @team.where(user_id: user_id).first.user_type
+    @team.where(user_id: id).first.user_type
   end
   
   def display_name

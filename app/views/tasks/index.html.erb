@@ -23,8 +23,7 @@
     <td><%= task.status %></td>
     <td><%= link_to 'Show', task, class: "btn" %></td>
     <td><%= link_to 'Edit', edit_task_path(task), class: "btn" %></td>
-    <% user_type = current_user.get_current_user_type(current_user.id, task.team) %>
-    <% if user_type == "Team Lead" %>
+    <% if is_team_lead?(task.team) %>
       <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></td>
     <% end %>
   </tr>
