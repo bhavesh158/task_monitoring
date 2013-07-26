@@ -43,8 +43,8 @@ TaskMonitoring::Application.configure do
     domain: "grepruby.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "vrishi18@gmail.com",
-    password: "@khushi143"
+    user_name: "grepruby.taskmonitor@gmail.com",
+    password: "grepruby123"
   } 
   Paperclip.options[:command_path] = "/usr/bin/convert"
   
