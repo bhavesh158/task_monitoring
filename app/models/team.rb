@@ -3,6 +3,7 @@ class Team < ActiveRecord::Base
   attr_accessible :team_name, :user_id, :team_id
   has_many :team_members
   has_many :tasks
+  has_many :feedbacks
   
   def get_user_type(user_id)
     self.team_members.where(user_id: user_id).first.user_type

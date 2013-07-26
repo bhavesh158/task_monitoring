@@ -24,7 +24,9 @@ TaskMonitoring::Application.routes.draw do
   resources :team_members
   
   resources :teams do
-    resources :users
+    resources :users do
+      resources :feedbacks
+    end
   end
   
   # The priority is based upon order of creation:

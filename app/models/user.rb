@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :teams, join_table: 'team_members'
   has_many :tasks
   has_many :task_comments
+  has_many :feedbacks
   
   validates :first_name, :last_name, :address, :mobile_no, presence: true
   validates :first_name, length: { minimum: 2}

@@ -1,0 +1,50 @@
+<legend><b>FeedBack</b></legend>
+
+<table class = "table table-striped">
+
+  <thead>
+    <tr>
+      <th>Team Name</th>
+      <th>User Name</th>
+      <th>Team Lead</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  
+  <tr>
+    <th><%= @team.team_name %></th>
+    <th><%= @user.first_name + " " + @user.last_name %></th>
+    <th><%= @team_lead_user.first_name + " " + @team_lead_user.last_name %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+</table>
+
+
+<legend><b>Messages</b></legend>
+
+<table class = "table table-striped"> 
+  
+  <thead>
+    <tr>
+      <th>FeedBack ID</th>
+      <th>Message</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <% @feedbacks.each do |feedback| %>
+    <tr>
+      <td><%= feedback.id %></td>
+      <td><%= feedback.content %></td>
+      <% if current_user.id == @team_lead_user.id  %>
+        <td><%= link_to 'Destroy FeedBack', team_user_feedback_path(@team, @user, feedback), method: :delete, data: { confirm: 'Are you sure?' },  class: "btn" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+

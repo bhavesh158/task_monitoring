@@ -11,5 +11,5 @@ class TeamsController < ApplicationController
     @tasks = @team.tasks
     @user = @team.team_members.map{ |team_member| team_member.user }
   end
-
+  
 end
