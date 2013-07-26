@@ -28,7 +28,11 @@ class User < ActiveRecord::Base
   end
   
   def display_name
-    return self.first_name + " " + self.last_name
+    full_name = ''
+    if !first_name.nil? and !last_name.nil?
+      full_name = first_name + " " + last_name
+    end
+    return full_name
   end
   
   
